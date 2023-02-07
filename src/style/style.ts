@@ -1,0 +1,35 @@
+export const style = {
+    btn:{
+        color:{
+            blue:'#3A8DF5',
+            transparent:'transparent',
+        }
+    },
+    border:{
+        color:{
+            blue:'#c2d0ec',
+        },
+        radius:{
+            md:'10px',
+            sm:'5px',
+        }
+    },
+    text:{
+        color:{
+            default:'#000',
+            eastBay:'rgba(74,85,104,1)',
+            slateGrey:'rgb(113,128,150)'
+        },
+        fontSize:{
+            default: '14px',
+            lg:'24px'
+        },
+    },
+    widgets:{
+        passwordComplexity:{
+            color:{
+                disabled:'rgb(237,242,247)'
+            }
+        }
+    }
+}
