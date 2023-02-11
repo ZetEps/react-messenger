@@ -1,4 +1,4 @@
-import ErrorBoundary, {ErrorBoundaryState} from "./ErrorBoundary";
+import {ErrorBoundaryState} from "../ErrorBoundary/ErrorBoundary";
 import React from "react";
 
 interface LoggerType extends ErrorBoundaryState{

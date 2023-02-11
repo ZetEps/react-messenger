@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "^5.1.26",
     "firebase": "^9.17.1",
+    "nanoid": "^4.0.1",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

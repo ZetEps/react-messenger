@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import ConfigSlice from "../features/configSlice";
+import NotificationSlice from "../features/notificationSlice";
 export const store = configureStore({
   reducer: {
-    config:ConfigSlice
+    config:ConfigSlice,
+    notifications:NotificationSlice
   },
 });
 

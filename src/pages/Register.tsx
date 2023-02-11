@@ -10,7 +10,9 @@ import {Header} from "./Auth";
 import {useDispatch} from "react-redux";
 import {toggleAuthPage} from "../redux/features/configSlice";
 import {SubmitHandler, useForm} from "react-hook-form";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useId, useState} from "react";
+import {pushNotification} from "../redux/features/notificationSlice";
+import {nanoid} from "nanoid";
 
 interface Inputs{
     name:string,
@@ -104,9 +106,17 @@ const Register = ()=>{
         return {status:type, statusText:text.passwordStatus[type][lang] }
     }
 
+    const checkSubmit= ():boolean=>{
+        const passwordComplexity = getPasswordComplexity()
+        if(passwordComplexity <= 1){
+            dispatch(pushNotification({notification:{id:nanoid(), content:text.notifications.weak[lang]}}))
+            return true;
+        }
 
+        return false
+    }
     const onSubmit:SubmitHandler<Inputs> = (data)=>{
-        console.log(data)
+        if(!checkSubmit()) return;
     }
 
     const renderPasswordComplexity = ()=>{

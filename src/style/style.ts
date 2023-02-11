@@ -38,6 +38,9 @@ export const style = {
             simple:'#f1c3a0',
             mid:'#c0a955',
             extreme:'rgb(31,232,56)'
+        },
+        notification:{
+            color:'#fff',
         }
     }
 }

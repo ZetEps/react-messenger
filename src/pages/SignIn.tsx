@@ -8,6 +8,7 @@ import {Header} from "./Auth";
 import {toggleAuthPage} from "../redux/features/configSlice";
 import {useDispatch} from "react-redux";
 import {SubmitHandler, useForm} from "react-hook-form";
+import {pushNotification} from "../redux/features/notificationSlice";
 
 interface Inputs{
     email:string,
@@ -23,7 +24,7 @@ const SignIn = ()=>{
     }
 
     const onSubmit:SubmitHandler<Inputs> = (data)=>{
-        console.log(data)
+
     }
 
     return (

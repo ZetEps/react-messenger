@@ -1,7 +1,6 @@
 import React from "react";
-import {ComponentHasChildrenType} from "../../global";
-import Logger from "./Logger";
-import logger from "./Logger";
+import {ComponentHasChildrenType} from "../../../global";
+import Logger from "../Logger/Logger";
 
 interface ErrorBoundaryType extends ComponentHasChildrenType{
 

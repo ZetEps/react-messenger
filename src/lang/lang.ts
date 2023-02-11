@@ -29,6 +29,11 @@ export const lang:any = {
             extreme:{
                 eng:"Extreme"
             }
+        },
+        notifications:{
+            weak:{
+                eng:"Your password too weak"
+            }
         }
     },
     SignIn:{
