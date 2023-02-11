@@ -1,4 +1,5 @@
 import {keyframes} from "styled-components";
+import {style} from "./style";
 
 export const rotate = keyframes`
     0%{

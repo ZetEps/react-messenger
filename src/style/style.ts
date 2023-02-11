@@ -28,8 +28,16 @@ export const style = {
     widgets:{
         passwordComplexity:{
             color:{
-                disabled:'rgb(237,242,247)'
+                disabled:'rgb(237,242,247)',
+                enabled:'rgb(16,185,129)'
             }
+        },
+        passwordStatus:{
+            default:'rgb(113,128,150)',
+            weak:'#FF0000',
+            simple:'#f1c3a0',
+            mid:'#c0a955',
+            extreme:'rgb(31,232,56)'
         }
     }
 }

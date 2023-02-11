@@ -1,5 +1,5 @@
 import React from "react";
-import {ComponentHasChildrenType} from "../global";
+import {ComponentHasChildrenType} from "../../global";
 import Logger from "./Logger";
 import logger from "./Logger";
 

@@ -16,4 +16,5 @@ export const Link = styled.a.attrs<Attrs>(props=>({
   color:${props => props.color ? props.color: style.text.color.default};
   font-size: ${props => props.fontSize ? props.fontSize : style.text.fontSize.default};
   cursor: pointer;
+  text-decoration: underline;
 `
