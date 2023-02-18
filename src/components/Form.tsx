@@ -28,7 +28,8 @@ const Container = styled.form<Props>`
   flex-direction: column;
   justify-content: space-evenly;
   max-width: 400px;
-  min-width: 400px;
+  width: 85%;
+  min-width: 270px;
   min-height: ${props => props.minHeight ? props.minHeight: '440px'};
   border-radius: 10px;
 `

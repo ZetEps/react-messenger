@@ -10,25 +10,28 @@ import {Header} from "./Auth";
 import {useDispatch} from "react-redux";
 import {toggleAuthPage} from "../redux/features/configSlice";
 import {SubmitHandler, useForm} from "react-hook-form";
-import React, {useEffect, useId, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {pushNotification} from "../redux/features/notificationSlice";
 import {nanoid} from "nanoid";
 
-interface Inputs{
+export interface Inputs{
     name:string,
     surname:string,
     email:string,
     password:string
 }
+export interface PasswordComplexityItemType{
+    enable?:boolean
+}
 
-type PasswordStatusType = 'default' | 'weak' | 'simple' | 'mid' | 'extreme'
+export type PasswordStatusType = 'default' | 'weak' | 'simple' | 'mid' | 'extreme'
 
-interface PasswordStatusProps{
+export interface PasswordStatusProps{
     status:PasswordStatusType
 }
 
 
-const PasswordStatusTypes = {
+export const PasswordStatusTypes = {
     default:{
         complexity:0,
         status:"default" //"No password Provided"
@@ -171,9 +174,6 @@ const PasswordComplexityContainer = styled.div`
   justify-content: space-between;
 `
 
-interface PasswordComplexityItemType{
-    enable?:boolean
-}
 
 const PasswordComplexityItem = styled.div<PasswordComplexityItemType>`
   width: 80px;
