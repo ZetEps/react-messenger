@@ -5,6 +5,7 @@ import {AiOutlineCloseCircle} from "react-icons/ai"
 import {useDispatch} from "react-redux";
 import {removeNotification} from "../../../redux/features/notificationSlice";
 import {slideFromRight} from "../../../style/keyframes";
+import {useEffect} from "react";
 
 interface NotificationItemType extends ComponentHasChildrenType{
     id:string
@@ -15,6 +16,12 @@ export const NotificationItem = (props:NotificationItemType)=>{
     const onClose = ()=>{
         dispatch(removeNotification({id:props.id}))
     }
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            onClose()
+        }, 5000)
+    }, [])
 
 
     return (
