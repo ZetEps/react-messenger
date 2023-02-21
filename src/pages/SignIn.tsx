@@ -1,4 +1,4 @@
-import {ButtonContainer, Container} from "./Auth";
+import {ButtonContainer} from "./Auth";
 import {Form, regex} from "../components/Form";
 import {Input} from "../components/Input";
 import {Button} from "../components/Button";
@@ -8,7 +8,6 @@ import {Header} from "./Auth";
 import {toggleAuthPage} from "../redux/features/configSlice";
 import {useDispatch} from "react-redux";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {pushNotification} from "../redux/features/notificationSlice";
 
 interface Inputs{
     email:string,

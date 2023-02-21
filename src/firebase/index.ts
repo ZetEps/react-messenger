@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-
-
+console.log(process.env)
 const firebaseConfig = {
     apiKey: process.env["REACT_APP_API_KEY"],
     authDomain: process.env["REACT_APP_AUTH_DOMAIN"],
@@ -13,6 +12,4 @@ const firebaseConfig = {
 };
 
 
-const app = initializeApp(firebaseConfig);
-console.log("app", app);
-console.log(process.env)
+export const app = initializeApp(firebaseConfig);

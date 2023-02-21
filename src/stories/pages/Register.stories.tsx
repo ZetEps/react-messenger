@@ -17,16 +17,17 @@ import styled from "styled-components";
 import {Input} from "../../components/Input";
 import "./../../index.css";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
-import {within} from "@storybook/testing-library";
+import {userEvent, within} from "@storybook/testing-library";
+import {createNewUser} from "../../firebase/auth/auth";
 
 
 
 export default {
     title:"Register",
     component:Register,
-    decorators:[(Story)=>(<Container>
+    decorators:[(Story)=>(<StoryContainer>
         <Story/>
-    </Container>)]
+    </StoryContainer>)]
 
 } as ComponentMeta<typeof Register>
 
@@ -138,7 +139,24 @@ export default {
     export const PrimaryFiledForm = Template.bind({})
     PrimaryFiledForm.play = async ({canvasElement}) =>{
         const canvas = within(canvasElement)
-
+        const nameInput = canvas.getByPlaceholderText("First Name");
+        const surnameInput = canvas.getByPlaceholderText("Last Name");
+        const emailInput = canvas.getByPlaceholderText('Email');
+        const passwordInput = canvas.getByPlaceholderText("Password");
+        const submitBtn = canvas.getByText("Register");
+        await userEvent.type(nameInput, "Name Example", {
+            delay:100
+        })
+        await userEvent.type(surnameInput, "Surname Example", {
+            delay:100
+        })
+        await userEvent.type(emailInput, "email@example.com", {
+            delay:100
+        })
+        await  userEvent.type(passwordInput, "password example123EEE", {
+            delay:100
+        })
+        await  userEvent.click(submitBtn)
     }
 
 
@@ -172,8 +190,8 @@ export default {
     const PasswordStatus = styled.span<PasswordStatusProps>`
   color:${(props)=>style.widgets.passwordStatus[props.status]}
 `
-const Container = styled.div`
-  height: 100vh;
+export const StoryContainer = styled.div`
+  height: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;

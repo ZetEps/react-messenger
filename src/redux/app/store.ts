@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import ConfigSlice from "../features/configSlice";
 import NotificationSlice from "../features/notificationSlice";
 export const store = configureStore({

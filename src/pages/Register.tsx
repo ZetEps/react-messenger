@@ -13,6 +13,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
 import {pushNotification} from "../redux/features/notificationSlice";
 import {nanoid} from "nanoid";
+import {createNewUser} from "../firebase/auth/auth";
 
 export interface Inputs{
     name:string,
@@ -113,13 +114,14 @@ const Register = ()=>{
         const passwordComplexity = getPasswordComplexity()
         if(passwordComplexity <= 1){
             dispatch(pushNotification({notification:{id:nanoid(), content:text.notifications.weak[lang]}}))
-            return true;
+            return false;
         }
 
-        return false
+        return true
     }
     const onSubmit:SubmitHandler<Inputs> = (data)=>{
         if(!checkSubmit()) return;
+        createNewUser(data.email, data.password)
     }
 
     const renderPasswordComplexity = ()=>{

@@ -5,8 +5,8 @@ import { store } from './redux/app/store';
 import "./index.css";
 import App from './App';
 import "./firebase/index";
-import ErrorBoundary from "./app/features/ErrorBoundary/ErrorBoundary";
-import Notifications from "./app/features/Notificator/Notifications";
+import ErrorBoundary from "./core/features/ErrorBoundary/ErrorBoundary";
+import Notifications from "./core/features/Notificator/Notifications";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
