@@ -13,7 +13,8 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
 import {pushNotification} from "../redux/features/notificationSlice";
 import {nanoid} from "nanoid";
-import {createNewUser} from "../firebase/auth/auth";
+import {createNewUser, setUserName} from "../firebase/auth/auth";
+import {setUserInfo} from "../redux/features/userSlice";
 
 export interface Inputs{
     name:string,
@@ -79,7 +80,8 @@ const Register = ()=>{
 
     const getPasswordComplexity = ():number=>{
         let passwordComplexity = 0;
-        if(password.length > 6) passwordComplexity++;
+        if(password.length < 6 && password.length !== 0) return 1;
+        if(password.length > 8) passwordComplexity++;
         if(password.search(/[a-z]/) !== -1) passwordComplexity++;
         if(password.search(/[0-9]/) !== -1) passwordComplexity++;
         if(password.search(/[A-Z]/) !== -1) passwordComplexity++
@@ -121,7 +123,11 @@ const Register = ()=>{
     }
     const onSubmit:SubmitHandler<Inputs> = (data)=>{
         if(!checkSubmit()) return;
-        createNewUser(data.email, data.password)
+        const {name, surname, email} = data
+        createNewUser(email, password).then(userCredential=>{
+            setUserName(`${name} ${surname}`)
+            dispatch(setUserInfo({name, surname, email}));
+        })
     }
 
     const renderPasswordComplexity = ()=>{
