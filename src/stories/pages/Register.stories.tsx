@@ -41,7 +41,7 @@ export default {
         },[password])
 
 
-        const {text, lang} = useLang(Register.name)
+        const getText = useLang("Register")
         const {register, handleSubmit} = useForm<Inputs>()
 
         const switchToSignIn = ()=>{
@@ -81,7 +81,7 @@ export default {
                 type = PasswordStatusTypes.default.status
             }
 
-            return {status:type, statusText:text.passwordStatus[type][lang] }
+            return {status:type, statusText:getText('passwordStatus', type) }
         }
 
         const checkSubmit= ():boolean=>{
@@ -113,7 +113,7 @@ export default {
         const {statusText, status} = getPasswordStatusProperties()
         return (
             <>
-                <Header>{text.header[lang]}</Header>
+                <Header>{getText('header')}</Header>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <InputAuth inputType={"text"} placeholder= {"First Name"} type={'name'} {...register('name', {required:true})}/>
                     <InputAuth inputType={"text"} placeholder = {"Last Name"} type ={'surname'} {...register('surname', {required:true})}/>
@@ -124,11 +124,11 @@ export default {
                     </PasswordComplexityContainer>
                     <PasswordStatusContainer>
                         <PasswordStatus status={status as PasswordStatusType}>{statusText}</PasswordStatus>
-                        <Link color={style.text.color.slateGrey}>{text.passwordComplexity[lang]}</Link>
+                        <Link color={style.text.color.slateGrey}>{getText('passwordComplexity')}</Link>
                     </PasswordStatusContainer>
                     <ButtonContainer>
-                        <Button type={"submit"} background={style.btn.color.blue} color={'#fff'}>{text.register[lang]}</Button>
-                        <Button onClick={switchToSignIn} background={style.btn.color.transparent} color ={'#000'}>{text.signIn[lang]}</Button>
+                        <Button type={"submit"} background={style.btn.color.blue} color={'#fff'}>{getText('register')}</Button>
+                        <Button onClick={switchToSignIn} background={style.btn.color.transparent} color ={'#000'}>{getText('signIn')}</Button>
                     </ButtonContainer>
                 </Form>
             </>

@@ -11,10 +11,10 @@ import {useDispatch} from "react-redux";
 import {toggleAuthPage} from "../redux/features/configSlice";
 import {SubmitHandler, useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
-import {pushNotification} from "../redux/features/notificationSlice";
-import {nanoid} from "nanoid";
 import {createNewUser, setUserName} from "../firebase/auth/auth";
 import {setUserInfo} from "../redux/features/userSlice";
+import {useNotificator} from "../hooks/useNotificator";
+import {useLogger} from "../hooks/useLogger";
 
 export interface Inputs{
     name:string,
@@ -32,6 +32,9 @@ export interface PasswordStatusProps{
     status:PasswordStatusType
 }
 
+enum RegisterError{
+    AlreadyRegister = 'auth/email-already-in-use',
+}
 
 export const PasswordStatusTypes = {
     default:{
@@ -66,7 +69,9 @@ const Register = ()=>{
     },[password])
 
 
-    const {text, lang} = useLang(Register.name)
+    const getText = useLang("Register")
+    const pushNotification = useNotificator()
+    const logger = useLogger()
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm<Inputs>()
 
@@ -109,16 +114,15 @@ const Register = ()=>{
             type = PasswordStatusTypes.default.status
         }
 
-        return {status:type, statusText:text.passwordStatus[type][lang] }
+        return {status:type, statusText:getText('passwordStatus', type)}
     }
 
     const checkSubmit= ():boolean=>{
         const passwordComplexity = getPasswordComplexity()
         if(passwordComplexity <= 1){
-            dispatch(pushNotification({notification:{id:nanoid(), content:text.notifications.weak[lang]}}))
+            pushNotification(getText('notifications', 'weak'))
             return false;
         }
-
         return true
     }
     const onSubmit:SubmitHandler<Inputs> = (data)=>{
@@ -127,6 +131,12 @@ const Register = ()=>{
         createNewUser(email, password).then(userCredential=>{
             setUserName(`${name} ${surname}`)
             dispatch(setUserInfo({name, surname, email}));
+        }).catch((e:Error) =>{
+            if(e.message.includes(RegisterError.AlreadyRegister)){
+                pushNotification(getText('error','emailAlreadyInUse'))
+            }else{
+                logger.write(e);
+            }
         })
     }
 
@@ -147,7 +157,7 @@ const Register = ()=>{
     const {statusText, status} = getPasswordStatusProperties()
     return (
         <>
-            <Header>{text.header[lang]}</Header>
+            <Header>{getText('header')}</Header>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <InputAuth inputType={"text"} placeholder= {"First Name"} type={'name'} {...register('name', {required:true})}/>
                 <InputAuth inputType={"text"} placeholder = {"Last Name"} type ={'surname'} {...register('surname', {required:true})}/>
@@ -158,11 +168,11 @@ const Register = ()=>{
                 </PasswordComplexityContainer>
                 <PasswordStatusContainer>
                     <PasswordStatus status={status as PasswordStatusType}>{statusText}</PasswordStatus>
-                    <Link color={style.text.color.slateGrey}>{text.passwordComplexity[lang]}</Link>
+                    <Link color={style.text.color.slateGrey}>{getText('passwordComplexity')}</Link>
                 </PasswordStatusContainer>
                 <ButtonContainer>
-                    <Button type={"submit"} background={style.btn.color.blue} color={'#fff'}>{text.register[lang]}</Button>
-                    <Button onClick={switchToSignIn} background={style.btn.color.transparent} color ={'#000'}>{text.signIn[lang]}</Button>
+                    <Button type={"submit"} background={style.btn.color.blue} color={'#fff'}>{getText('register')}</Button>
+                    <Button onClick={switchToSignIn} background={style.btn.color.transparent} color ={'#000'}>{getText('signIn')}</Button>
                 </ButtonContainer>
             </Form>
         </>

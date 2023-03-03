@@ -26,9 +26,9 @@ const loginCurrentUser = (email:string, password:string)=>{
 
 const setUserName = (name:string)=>{
         if(auth.currentUser){
-                updateProfile(auth.currentUser, {
-                        displayName:name
-                })
+            updateProfile(auth.currentUser, {
+                displayName:name
+            })
         }
 }
 
@@ -49,4 +49,4 @@ onAuthStateChanged(auth, (user)=>{
         }
 })
 
-export {auth, createNewUser, setUserName}
+export {auth, createNewUser, setUserName, loginCurrentUser}

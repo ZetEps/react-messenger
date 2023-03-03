@@ -57,7 +57,6 @@ const Container = styled.div`
   justify-content: space-between;
   border: 1px solid #e8d4d4;
   box-shadow: -1px 4px 8px -1px rgba(0,0,0,0.39);
-  z-index: 9999;
   &:hover ${Close}{
     opacity: 0.5;
   }

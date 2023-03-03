@@ -1,5 +1,5 @@
 
-export const lang:any = {
+export const lang = {
     Register:{
         signIn:{
             eng:"Sign In"
@@ -34,6 +34,11 @@ export const lang:any = {
             weak:{
                 eng:"Your password too weak"
             }
+        },
+        error:{
+            emailAlreadyInUse:{
+                eng:"Sorry it seems this email already in use. Try to sign in with this email."
+            }
         }
     },
     SignIn:{
@@ -49,6 +54,14 @@ export const lang:any = {
         register:{
             eng:"Register"
         },
+        errors:{
+            noAccount:{
+                eng:"No account was registered with this email"
+            },
+            incorrectAccount:{
+                eng:"Incorrect email or password"
+            }
+        }
     }
 
 }

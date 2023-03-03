@@ -25,7 +25,7 @@ export default {
 
 const Primary = () => {
 
-    const {text, lang} = useLang(SignIn.name)
+    const getText = useLang("Register");
     const {register, handleSubmit} = useForm<Inputs>()
     const switchToRegister = ()=>{
     }
@@ -36,13 +36,13 @@ const Primary = () => {
 
     return (
         <>
-            <Header>{text.header[lang]}</Header>
+            <Header>{getText("header")}</Header>
             <Form minHeight={'300px'} onSubmit={handleSubmit(onSubmit)}>
                 <Input inputType={'email'} placeholder={'Email'} type={'email'} {...register('email', {pattern:regex.email, required:true})}/>
                 <Input inputType={'password'} placeholder={'Password'} type ={'password'} {...register('password', {required: true})}/>
                 <ButtonContainer>
-                    <Button background={style.btn.color.blue} color={'#fff'}>{text.signIn[lang]}</Button>
-                    <Button onClick={switchToRegister} background={style.btn.color.transparent} color ={'#000'}>{text.register[lang]}</Button>
+                    <Button background={style.btn.color.blue} color={'#fff'}>{getText('signIn')}</Button>
+                    <Button onClick={switchToRegister} background={style.btn.color.transparent} color ={'#000'}>{getText('register')}</Button>
                 </ButtonContainer>
             </Form>
         </>

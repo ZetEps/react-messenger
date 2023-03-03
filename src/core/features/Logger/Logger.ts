@@ -17,7 +17,8 @@ class Logger{
         Logger.isExist = true;
     }
 
-    write(error: Error, errorInfo: React.ErrorInfo){
+    write(error: Error, errorInfo?: React.ErrorInfo){
+        console.log("Write", error);
         const log:LoggerType = {error, errorInfo, timestamp:Date.now()}
         this.errors.push(log)
     }
