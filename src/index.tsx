@@ -16,7 +16,7 @@ root.render(
     <Provider store={store}>
       <ErrorBoundary>
           <Notifications>
-              <App />
+              <App/>
           </Notifications>
       </ErrorBoundary>
     </Provider>
