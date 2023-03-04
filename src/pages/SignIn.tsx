@@ -1,7 +1,7 @@
 import {ButtonContainer} from "./Auth";
-import {Form, regex} from "../components/Form";
-import {Input} from "../components/Input";
-import {Button} from "../components/Button";
+import {Form, regex} from "../components/primitives/Form";
+import {Input} from "../components/primitives/Input";
+import {Button} from "../components/primitives/Button";
 import {style} from "../style/style";
 import {useLang} from "../hooks/useLang";
 import {Header} from "./Auth";

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import {Form, regex} from "../components/Form";
-import {Input} from "../components/Input";
-import {Button} from "../components/Button";
+import {Form, regex} from "../components/primitives/Form";
+import {Input} from "../components/primitives/Input";
+import {Button} from "../components/primitives/Button";
 import {style} from "../style/style";
 import {useLang} from "../hooks/useLang";
-import {Link} from "../components/Link";
+import {Link} from "../components/primitives/Link";
 import {ButtonContainer} from "./Auth";
 import {Header} from "./Auth";
 import {useDispatch} from "react-redux";

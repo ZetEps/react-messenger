@@ -36,8 +36,10 @@ export  const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `
+
+
 export const  Logo = styled(DiReact)`
-  font-size: 90px;
+  font-size: ${(state)=> state.fontSize ? state.fontSize : "90px"};
   color: #5454a4;
   animation: ${rotate} 7s infinite linear;
   margin-bottom: 10px;

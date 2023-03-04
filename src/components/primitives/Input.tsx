@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {style} from "../style/style";
+import {style} from "../../style/style";
 
 interface Props{
     inputType: "text" | "password" | "email"

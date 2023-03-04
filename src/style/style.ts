@@ -22,7 +22,7 @@ export const style = {
         },
         fontSize:{
             default: '14px',
-            lg:'24px'
+            lg:'24px',
         },
     },
     widgets:{

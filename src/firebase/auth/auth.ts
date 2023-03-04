@@ -7,7 +7,7 @@ import {
         UserCredential
 } from "firebase/auth";
 import {app} from "../index";
-import {changeOnlineStatus, UserStatus} from "../../redux/features/userSlice";
+import {AppState, changeAppState} from "../../redux/features/configSlice";
 import {store} from "../../redux/app/store";
 
 
@@ -27,13 +27,13 @@ const loginCurrentUser = (email:string, password:string)=>{
 const setUserName = (name:string)=>{
         if(auth.currentUser){
             updateProfile(auth.currentUser, {
-                displayName:name
+                  displayName:name
             })
         }
 }
 
 const logout = ()=>{
-        return auth.signOut()
+   return auth.signOut()
 }
 
 // @ts-ignore
@@ -42,11 +42,10 @@ global['logout'] = logout
 
 
 onAuthStateChanged(auth, (user)=>{
-        if(user){
-                store.dispatch(changeOnlineStatus({status:UserStatus.online}))
-        }else{
-                store.dispatch(changeOnlineStatus({status:UserStatus.offline}))
-        }
+        setTimeout(()=>{
+                if(user) store.dispatch(changeAppState(AppState.Online))
+                else store.dispatch(changeAppState(AppState.Offline))
+        }, 2000)
 })
 
 export {auth, createNewUser, setUserName, loginCurrentUser}

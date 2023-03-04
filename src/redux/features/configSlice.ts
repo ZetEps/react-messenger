@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 
 export enum AuthPageState{
@@ -6,14 +6,22 @@ export enum AuthPageState{
     SignIn = "signIn"
 }
 
+export enum AppState{
+    Online = "online",
+    Offline = "offline",
+    Loading = "loading",
+}
+
 
 interface ConfigType{
-    authPage:AuthPageState.Register | AuthPageState.SignIn,
+    authPage:AuthPageState
+    appState: AppState
 }
 
 
 const initialState:ConfigType = {
     authPage:AuthPageState.SignIn,
+    appState:AppState.Loading
 }
 
 const configSlice = createSlice({
@@ -23,10 +31,13 @@ const configSlice = createSlice({
       toggleAuthPage:(state)=>{
         if(state.authPage === AuthPageState.Register) state.authPage = AuthPageState.SignIn
         else state.authPage = AuthPageState.Register;
-      }
+      },
+        changeAppState:(state, action:PayloadAction<AppState>) =>{
+          state.appState = action.payload;
+        }
     }
 })
 
 
-export const {toggleAuthPage} = configSlice.actions
+export const {toggleAuthPage, changeAppState} = configSlice.actions
 export default configSlice.reducer

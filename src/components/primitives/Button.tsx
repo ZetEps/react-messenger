@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {style} from "../style/style";
+import {style} from "../../style/style";
 
 
 interface Props{
@@ -20,4 +20,8 @@ export const Button = styled.button<Props>`
   border-radius: ${style.border.radius.md};
   border: 1px solid ${style.border.color.blue};
   cursor: pointer;
+  
+  &:active{
+    transform: scale(.95);
+  }
 `

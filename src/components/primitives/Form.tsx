@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {ComponentHasChildrenType} from "../global"
+import {ComponentHasChildrenType} from "../../global"
 import {SubmitHandler} from "react-hook-form";
 import React from "react";
 

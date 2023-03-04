@@ -9,12 +9,12 @@ import Register, {
 import {useLang} from "../../hooks/useLang";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ButtonContainer, Header} from "../../pages/Auth";
-import {Form, regex} from "../../components/Form";
-import {Link} from "../../components/Link";
+import {Form, regex} from "../../components/primitives/Form";
+import {Link} from "../../components/primitives/Link";
 import {style} from "../../style/style";
-import {Button} from "../../components/Button";
+import {Button} from "../../components/primitives/Button";
 import styled from "styled-components";
-import {Input} from "../../components/Input";
+import {Input} from "../../components/primitives/Input";
 import "./../../index.css";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
 import {userEvent, within} from "@storybook/testing-library";

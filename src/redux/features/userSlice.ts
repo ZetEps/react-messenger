@@ -4,13 +4,9 @@ interface UserState{
     name:string | undefined,
     surname:string | undefined,
     email: string | undefined,
-    isLoggedIn:UserStatus
 }
 
-export enum UserStatus{
-    online = "online",
-    offline = "offline"
-}
+
 
 
 
@@ -18,7 +14,6 @@ const initialState:UserState = {
     name:undefined,
     surname:undefined,
     email:undefined,
-    isLoggedIn:UserStatus.offline
 }
 
  const userSlice = createSlice({
@@ -31,13 +26,9 @@ const initialState:UserState = {
              if(surname) state.surname = surname
              if(email) state.email = email
          },
-         changeOnlineStatus:(state, action:PayloadAction<{status:UserStatus}>)=>{
-             state.isLoggedIn = action.payload.status
-         }
      }
  })
 
 export default userSlice.reducer
 
-const {setUserInfo, changeOnlineStatus} = userSlice.actions
-export {setUserInfo, changeOnlineStatus}
+export const {setUserInfo} = userSlice.actions
