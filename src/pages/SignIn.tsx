@@ -21,6 +21,7 @@ interface Inputs{
 enum Errors{
     NoAccount = 'auth/user-not-found',
     IncorrectAccount = 'auth/wrong-password',
+    BadInternetConnection = 'auth/network-request-failed'
 
 }
 const SignIn = ()=>{
@@ -38,12 +39,14 @@ const SignIn = ()=>{
     const onSubmit:SubmitHandler<Inputs> = (data )=>{
         setIsLoading(true);
         loginCurrentUser(data.email, data.password).catch((e:Error)=>{
-            setIsLoading(false);
             if(e.message.includes(Errors.IncorrectAccount)){
                 pushNotification(getText('errors', 'incorrectAccount'))
             }else if(e.message.includes(Errors.NoAccount)){
                 pushNotification(getText('errors', 'noAccount'))
-            }else{
+            }else if(e.message.includes(Errors.BadInternetConnection)){
+                pushNotification(getText('errors', 'requestFailed'))
+            }
+            else{
                 logger.write(e)
             }
         })

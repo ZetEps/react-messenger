@@ -1,4 +1,4 @@
-export interface ComponentHasChildrenType {
+export interface ComponentHasChildren {
     children:JSX.Element | JSX.Element[] | string | never[]
 }
 

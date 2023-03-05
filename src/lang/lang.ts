@@ -60,6 +60,9 @@ export const lang = {
             },
             incorrectAccount:{
                 eng:"Incorrect email or password"
+            },
+            requestFailed:{
+                eng:"Request Failed. Try again in some minutes"
             }
         }
     }

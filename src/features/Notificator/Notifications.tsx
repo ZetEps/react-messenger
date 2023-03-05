@@ -1,9 +1,9 @@
-import {ComponentHasChildrenType} from "../../../global";
-import {useAppSelector} from "../../../redux/app/hooks";
+import {ComponentHasChildren} from "../../global";
+import {useAppSelector} from "../../redux/app/hooks";
 import {NotificationItem} from "./NotificationItem";
 import styled from "styled-components";
 
-interface NotificationType extends ComponentHasChildrenType{
+interface NotificationType extends ComponentHasChildren{
 
 }
 

@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import {ComponentHasChildrenType} from "../../../global";
-import {style} from "../../../style/style";
+import {ComponentHasChildren} from "../../global";
+import {style} from "../../style/style";
 import {AiOutlineCloseCircle} from "react-icons/ai"
 import {useDispatch} from "react-redux";
-import {removeNotification} from "../../../redux/features/notificationSlice";
-import {slideFromRight} from "../../../style/keyframes";
+import {removeNotification} from "../../redux/features/notificationSlice";
+import {slideFromRight} from "../../style/keyframes";
 import {useEffect} from "react";
+import {Alert, AlertColor} from "@mui/material";
 
-interface NotificationItemType extends ComponentHasChildrenType{
-    id:string
+interface NotificationItemType extends ComponentHasChildren{
+    id:string,
+    severity?: AlertColor
 }
 
 export const NotificationItem = (props:NotificationItemType)=>{
@@ -25,10 +27,9 @@ export const NotificationItem = (props:NotificationItemType)=>{
 
 
     return (
-        <Container>
-            <Content>{props.children}</Content>
-            <Close onClick={onClose}/>
-        </Container>
+        <Alert severity={props.severity ? props.severity : "error"} onClose={onClose}>
+            {props.children}
+        </Alert>
     )
 }
 

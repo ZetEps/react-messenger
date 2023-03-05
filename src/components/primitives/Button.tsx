@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import {style} from "../../style/style";
-import {ComponentHasChildrenType} from "../../global";
+import {ComponentHasChildren} from "../../global";
 import React from "react";
 import {Loader} from "./Loader";
 
+export enum ButtonType{
+    Transparent = 'transparent'
+}
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    color:string,
-    background:string,
-    $loading?:boolean
+    color?:string,
+    background?:string,
+    $loading?:boolean,
+    $type?:ButtonType
 }
 
 export const Button = (props:Props)=>{
 
     const getContent = ()=>{
-        if(props.$loading) return <Loader width="25px" height="25px"/>
+        if(props.$loading) return <Loader size="25px"/>
         else return props.children
     }
     return <ButtonItem {...props}>{getContent()}</ButtonItem>
@@ -29,7 +33,7 @@ const ButtonItem = styled.button<Props>`
   background:${props => props.background};
   color:${props => props.color};
   border-radius: ${style.border.radius.md};
-  border: 1px solid ${style.border.color.blue};
+  border: ${state => state.$type === ButtonType.Transparent ? 'none' : `1px solid ${style.border.color.blue}`};
   cursor: pointer;
   display: flex;
   justify-content: center;

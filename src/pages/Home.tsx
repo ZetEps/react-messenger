@@ -1,10 +1,19 @@
+import styled from "styled-components";
+import {Header} from "../components/ui/Header/Header";
 
 const Home = ()=>{
 
     return(
-        <div>Home</div>
+        <Container>
+            <Header/>
+        </Container>
     )
 }
 
 
 export default Home;
+
+
+const Container = styled.div`
+    
+`

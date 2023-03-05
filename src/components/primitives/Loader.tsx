@@ -1,24 +1,11 @@
 import styled from "styled-components";
 import {rotate} from "../../style/keyframes";
-import {ListItem} from "@mui/material";
+import {CircularProgress, ListItem} from "@mui/material";
 interface Props{
-    height:string,
-    width:string,
+    size:string
 
 }
 
 export const Loader = (props:Props)=>{
-    return <LoaderItem {...props}/>
+    return <CircularProgress color = "secondary" size={props.size}/>
 }
-
-
-
-const LoaderItem = styled.div<Props>`
-  height:${state => state.height};
-  width: ${state => state.width};
-  border-radius: 50%;
-  border:3px solid transparent;
-  border-top: 3px solid #fff;
-  animation: ${rotate} 1.5s infinite linear;
-  
-`

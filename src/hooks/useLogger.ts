@@ -1,4 +1,4 @@
-import Logger from "../core/features/Logger/Logger";
+import Logger from "../features/Logger/Logger";
 
 export const useLogger = ()=>{
     return new Logger();

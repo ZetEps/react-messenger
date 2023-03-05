@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import {ComponentHasChildrenType} from "../../global"
+import {ComponentHasChildren} from "../../global"
 import {SubmitHandler} from "react-hook-form";
 import React from "react";
 
-interface Props extends ComponentHasChildrenType{
+interface Props extends ComponentHasChildren{
     minHeight?:string,
     onSubmit: React.FormEventHandler<HTMLFormElement>
 }
