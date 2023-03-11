@@ -32,12 +32,10 @@ const setUserName = (name:string)=>{
         }
 }
 
-const logout = ()=>{
+export const logout = ()=>{
    return auth.signOut()
 }
 
-// @ts-ignore
-global['logout'] = logout
 
 
 

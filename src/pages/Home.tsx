@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Header} from "../components/ui/Header/Header";
+import {Header} from "../components/ui/Home/Header";
 
 const Home = ()=>{
 

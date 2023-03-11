@@ -55,14 +55,24 @@ export const lang = {
             eng:"Register"
         },
         errors:{
-            noAccount:{
+            user_not_found:{
                 eng:"No account was registered with this email"
             },
-            incorrectAccount:{
+            wrong_password:{
                 eng:"Incorrect email or password"
             },
-            requestFailed:{
+            network_request_failed:{
                 eng:"Request Failed. Try again in some minutes"
+            },
+            too_many_requests:{
+                eng:"Too many requests. Try again"
+            }
+        }
+    },
+    Home:{
+        Header:{
+            Notification:{
+                eng:"Notification"
             }
         }
     }

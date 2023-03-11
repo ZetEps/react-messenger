@@ -1,9 +1,13 @@
 import React from "react";
-import {Menu, MenuItem} from "@mui/material";
+import {Menu} from "@mui/material";
 import {Button, ButtonType} from "../../primitives/Button";
 import {IoIosNotificationsOutline} from "react-icons/io"
 import styled from "styled-components";
 import {style} from "../../../style/style";
+import {MenuItem} from "../../primitives/MenuItem";
+import {useLang} from "../../../hooks/useLang";
+import {NotificationMenuItem} from "./NotificationMenuItem";
+import {StatusPointer} from "../../primitives/StatusPointer";
 interface Props{
     hasNotification?:boolean
 }
@@ -18,6 +22,8 @@ export const NotificationMenu = (props:Props)=> {
         setAnchorEl(null)
     };
 
+    const getText = useLang("Home");
+
     return (
         <Container>
             <Button
@@ -27,8 +33,9 @@ export const NotificationMenu = (props:Props)=> {
             >
                 <NotificationIcon/>
             </Button>
-            {props.hasNotification && <Pointer/>}
+            {props.hasNotification && <StatusPointer/>}
             <Menu
+
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
@@ -36,7 +43,10 @@ export const NotificationMenu = (props:Props)=> {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem>123</MenuItem>
+                <Header>{getText("Header", "Notification")}</Header>
+                <NotificationMenuItem isActive={true}/>
+                <NotificationMenuItem isActive={true}/>
+                <NotificationMenuItem isActive={true}/>
             </Menu>
         </Container>
     );
@@ -52,12 +62,9 @@ const NotificationIcon = styled(IoIosNotificationsOutline)`
     color:${style.text.color.slateGrey}
 `
 
-const Pointer = styled.div`
-  position: absolute;
-  top: 6px;
-  right:6px;
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-  background-color: #6888e3;
+
+const Header = styled.h3`
+    padding: 15px;
+  font-weight: bold;
+  font-size: 16px;
 `

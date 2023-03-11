@@ -18,7 +18,8 @@ export const style = {
         color:{
             default:'#000',
             eastBay:'rgba(74,85,104,1)',
-            slateGrey:'rgb(113,128,150)'
+            slateGrey:'rgb(113,128,150)',
+            indigo: 'rgb(45,55,72)'
         },
         fontSize:{
             default: '14px',

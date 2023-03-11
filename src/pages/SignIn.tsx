@@ -8,11 +8,10 @@ import {Header} from "./Auth";
 import {toggleAuthPage} from "../redux/features/configSlice";
 import {useDispatch} from "react-redux";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {loginCurrentUser} from "../firebase/auth/auth";
 import {useLogger} from "../hooks/useLogger";
 import {useNotificator} from "../hooks/useNotificator";
 import {useState} from "react";
-import {auth} from "./../firebase/auth/auth";
+import Application from "../features/Application/Application";
 interface Inputs{
     email:string,
     password:string
@@ -21,7 +20,8 @@ interface Inputs{
 enum Errors{
     NoAccount = 'auth/user-not-found',
     IncorrectAccount = 'auth/wrong-password',
-    BadInternetConnection = 'auth/network-request-failed'
+    BadInternetConnection = 'auth/network-request-failed',
+    TooManyRequests = "auth/too-many-requests"
 
 }
 const SignIn = ()=>{
@@ -38,17 +38,17 @@ const SignIn = ()=>{
 
     const onSubmit:SubmitHandler<Inputs> = (data )=>{
         setIsLoading(true);
-        loginCurrentUser(data.email, data.password).catch((e:Error)=>{
-            if(e.message.includes(Errors.IncorrectAccount)){
-                pushNotification(getText('errors', 'incorrectAccount'))
-            }else if(e.message.includes(Errors.NoAccount)){
-                pushNotification(getText('errors', 'noAccount'))
-            }else if(e.message.includes(Errors.BadInternetConnection)){
-                pushNotification(getText('errors', 'requestFailed'))
+        Application.loginIntoAccount(data.email, data.password).catch((e:Error)=>{
+            for(const error of Object.values(Errors)){
+                if(e.message.includes(error)){
+                    const errorText = error.replace("auth/", '').replaceAll("-", "_");
+                    pushNotification(getText('errors', errorText))
+                    setIsLoading(false);
+                    return
+                }
             }
-            else{
-                logger.write(e)
-            }
+            logger.write(e)
+            setIsLoading(false);
         })
 
     }
@@ -60,7 +60,7 @@ const SignIn = ()=>{
                 <Input inputType={'email'} placeholder={'Email'} type={'email'} {...register('email', {pattern:regex.email, required:true})}/>
                 <Input inputType={'password'} placeholder={'Password'} type ={'password'} {...register('password', {required: true})}/>
                 <ButtonContainer>
-                    <Button background={style.btn.color.blue} color={'#fff'} $loading={isLoading}>{getText('signIn')}</Button>
+                    <Button background={style.btn.color.blue} color={'#fff'} $loading={isLoading} disabled={isLoading}>{getText('signIn')}</Button>
                     <Button onClick={switchToRegister} background={style.btn.color.transparent} color ={'#000'}>{getText('register')}</Button>
                 </ButtonContainer>
             </Form>

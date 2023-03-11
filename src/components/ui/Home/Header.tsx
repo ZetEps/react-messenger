@@ -2,9 +2,8 @@ import styled from "styled-components";
 import {Logo} from "../../../pages/Auth";
 import {style} from "../../../style/style";
 import {NotificationMenu} from "./NotificationMenu";
-import {UserIcon} from "../../primitives/UserIcon";
 import {Group} from "../../primitives/Group";
-import img from "../../../temp/img.jpg"
+import {UserMenu} from "./UserMenu";
 
 export const Header = ()=>{
 
@@ -17,7 +16,7 @@ export const Header = ()=>{
             <Group>
                 <NotificationMenu hasNotification={true}/>
                 <Group $width="150px" $justifyContent='space-around' $padding={"0 10px"}>
-                    <UserIcon width={40} height={40} src={img}/>
+                    <UserMenu/>
                 </Group>
             </Group>
         </Container>

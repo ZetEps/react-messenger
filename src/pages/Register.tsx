@@ -11,10 +11,11 @@ import {useDispatch} from "react-redux";
 import {toggleAuthPage} from "../redux/features/configSlice";
 import {SubmitHandler, useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
-import {createNewUser, setUserName} from "../firebase/auth/auth";
 import {setUserInfo} from "../redux/features/userSlice";
 import {useNotificator} from "../hooks/useNotificator";
 import {useLogger} from "../hooks/useLogger";
+import Application from "../features/Application/Application";
+import {setUserName} from "../firebase/auth/auth";
 
 export interface Inputs{
     name:string,
@@ -128,8 +129,8 @@ const Register = ()=>{
     const onSubmit:SubmitHandler<Inputs> = (data)=>{
         if(!checkSubmit()) return;
         const {name, surname, email} = data
-        createNewUser(email, password).then(userCredential=>{
-            setUserName(`${name} ${surname}`)
+        Application.createNewUser(email, password).then(userCredential=>{
+            Application.setUserName(`${name} ${surname}`)
             dispatch(setUserInfo({name, surname, email}));
         }).catch((e:Error) =>{
             if(e.message.includes(RegisterError.AlreadyRegister)){

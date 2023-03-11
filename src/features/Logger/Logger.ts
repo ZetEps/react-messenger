@@ -18,7 +18,7 @@ class Logger{
     }
 
     write(error: Error, errorInfo?: React.ErrorInfo){
-        console.log("Write", error);
+        console.error("Write", error);
         const log:LoggerType = {error, errorInfo, timestamp:Date.now()}
         this.errors.push(log)
     }
